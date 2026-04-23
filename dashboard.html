@@ -2,35 +2,22 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Panel Alumno</title>
+<title>Panel</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<h2>Datos del Alumno</h2>
-
-<input id="nombre" placeholder="Nombre completo">
+<div class="card">
+<h2>Datos Alumno</h2>
+<input id="nombre" placeholder="Nombre">
 <input id="edad" placeholder="Edad">
-<input id="curp" placeholder="CURP">
-<input id="grupo" placeholder="Grupo">
+<button onclick="save()">Guardar</button>
+</div>
 
-<select id="carrera">
-<option>Sistemas computacionales</option>
-<option>Biología</option>
-<option>Agronomía</option>
-<option>Veterinaria</option>
-<option>Gestión empresarial</option>
-</select>
-
-<h3>Familiar</h3>
-<input id="famNombre" placeholder="Nombre familiar">
-<input id="parentesco" placeholder="Parentesco">
-<input id="telefono" placeholder="Teléfono">
-
-<button onclick="guardarDatos()">Guardar</button>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-<script src="firebase-config.js"></script>
+<script src="firebase.js"></script>
 <script src="app.js"></script>
+
 </body>
 </html>

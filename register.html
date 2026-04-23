@@ -7,19 +7,18 @@
 </head>
 <body>
 
-<div class="container">
-<h2>Registro de Alumno</h2>
-
+<div class="card">
+<h2>Registro</h2>
 <input id="control" placeholder="Número de control">
-<input id="password" placeholder="Contraseña">
-
+<input id="pass" type="password" placeholder="Contraseña">
 <button onclick="register()">Registrar</button>
 <p id="msg"></p>
-
 </div>
+
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-<script src="firebase-config.js"></script>
+<script src="firebase.js"></script>
 <script src="app.js"></script>
+
 </body>
 </html>
