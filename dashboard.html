@@ -2,13 +2,14 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Panel</title>
+<title>Panel Alumno</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <div class="card">
 <h2>Datos Alumno</h2>
+
 <input id="nombre" placeholder="Nombre completo">
 <input id="edad" placeholder="Edad">
 <input id="curp" placeholder="CURP">
@@ -22,10 +23,11 @@
 <option>Gestión empresarial</option>
 </select>
 
-<h3>Familiar</h3>
-<input id="famNombre" placeholder="Nombre familiar">
-<input id="parentesco" placeholder="Parentesco">
-<input id="telefono" placeholder="Teléfono">
+<h3>Familiares</h3>
+<div id="familiares"></div>
+<button onclick="agregarFamiliar()">+ Agregar familiar</button>
+
+<br><br>
 <button onclick="save()">Guardar</button>
 </div>
 

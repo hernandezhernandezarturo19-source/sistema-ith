@@ -1,6 +1,6 @@
 function register(){
-let c = document.getElementById('control').value;
-let p = document.getElementById('pass').value;
+let c = control.value;
+let p = pass.value;
 
 db.collection("alumnos").doc(c).get().then(doc=>{
  if(doc.exists){
@@ -13,8 +13,13 @@ db.collection("alumnos").doc(c).get().then(doc=>{
 }
 
 function login(){
-let c = document.getElementById('control').value;
-let p = document.getElementById('pass').value;
+let c = control.value;
+let p = pass.value;
+
+if(c==="admin" && p==="admin"){
+ window.location="admin.html";
+ return;
+}
 
 db.collection("alumnos").doc(c).get().then(doc=>{
  if(!doc.exists){
@@ -28,13 +33,62 @@ db.collection("alumnos").doc(c).get().then(doc=>{
 });
 }
 
+function agregarFamiliar(){
+let html = `
+<div>
+<input placeholder="Nombre">
+<input placeholder="Parentesco">
+<input placeholder="Teléfono">
+</div>`;
+familiares.innerHTML += html;
+}
+
 function save(){
 let u = localStorage.getItem("user");
-let n = document.getElementById("nombre").value;
 
-db.collection("alumnos").doc(u).update({
- nombre:n
+let fams=[];
+document.querySelectorAll("#familiares div").forEach(d=>{
+ fams.push({
+  nombre:d.children[0].value,
+  parentesco:d.children[1].value,
+  telefono:d.children[2].value
+ });
 });
 
-alert("Guardado");
+db.collection("alumnos").doc(u).update({
+ nombre:nombre.value,
+ edad:edad.value,
+ curp:curp.value,
+ grupo:grupo.value,
+ carrera:carrera.value,
+ familiares:fams
+});
+
+alert("Guardado PRO");
+}
+
+function cargarAlumnos(){
+db.collection("alumnos").onSnapshot(snap=>{
+ let html="";
+ snap.forEach(doc=>{
+  let d=doc.data();
+  html+=`
+  <div>
+  ${doc.id} - ${d.nombre||""}
+  <button onclick="eliminar('${doc.id}')">Eliminar</button>
+  </div>`;
+ });
+ tabla.innerHTML=html;
+});
+}
+
+function eliminar(id){
+db.collection("alumnos").doc(id).delete();
+}
+
+function buscar(){
+let t=buscar.value.toLowerCase();
+document.querySelectorAll("#tabla div").forEach(d=>{
+ d.style.display=d.innerText.toLowerCase().includes(t)?"block":"none";
+});
 }
