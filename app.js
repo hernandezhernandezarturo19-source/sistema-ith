@@ -99,7 +99,8 @@ function logout() {
   lista.innerHTML += `
 <table border="1">
 <tr>
-<th>Nombre</th><th>Edad</th><th>CURP</th><th>Grupo</th><th>Carrera</th>
+<th>Nombre</th><th>Edad</th><th>CURP</th><th>Grupo</th><th>Carrera</th><th>agregrafamiliar</th><th>parentesco</th><th>telefono
+</th>
 </tr>
 <tr>
 <td>${data.nombre}</td>
@@ -107,7 +108,7 @@ function logout() {
 <td>${data.curp}</td>
 <td>${data.grupo}</td>
 <td>${data.carrera}</td>
-<td>${data.nombre.agregarFamiliar}</td>
+<td>${data.agregarFamiliar}</td>
 <td>${data.parentesco}</td>
 <td>${data.telefono}</td>
 </tr>
