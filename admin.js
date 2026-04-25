@@ -1,16 +1,16 @@
+import "./firebase.js";
 import { getFirestore, collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-const db = getFirestore();
+const db = firebase.firestore();
 
 async function cargarAlumnos() {
-  const querySnapshot = await getDocs(collection(db, "alumnos"));
+  const snapshot = await db.collection("alumnos").get();
   const contenedor = document.getElementById("lista-alumnos");
 
   contenedor.innerHTML = "";
 
-  querySnapshot.forEach((docSnap) => {
-    const data = docSnap.data();
-    const id = docSnap.id;
+  snapshot.forEach((doc) => {
+    const data = doc.data();
+    const id = doc.id;
 
     contenedor.innerHTML += `
       <div class="card-alumno">
@@ -26,16 +26,13 @@ async function cargarAlumnos() {
   });
 }
 
-cargarAlumnos();
-
 async function eliminar(id) {
-  await deleteDoc(doc(db, "alumnos", id));
+  await db.collection("alumnos").doc(id).delete();
   cargarAlumnos();
 }
 
-window.logout = function () {
-  localStorage.clear();
-  location.href = "index.html";
-};
+function logout() {
+  window.location.href = "index.html";
+}
 
 cargarAlumnos();
