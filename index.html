@@ -2,16 +2,25 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ITH Login</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
 <div class="card">
-  <h2>Login</h2>
-  <input type="email" id="email" placeholder="Correo">
-  <input type="password" id="password" placeholder="Contraseña">
-  <button onclick="login()">Ingresar</button>
+<h1>ITH - Sistema Escolar</h1>
+<input id="control" placeholder="Número de control">
+<input id="pass" type="password" placeholder="Contraseña">
+<button onclick="login()">Entrar</button>
+<p id="msg"></p>
+<a href="register.html">Registrarse</a>
 </div>
-<script type="module" src="auth.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="firebase.js"></script>
+<script src="app.js"></script>
+
 </body>
 </html>
