@@ -1,3 +1,5 @@
+const ADMIN_USER = "admin";
+const ADMIN_PASS = "1234";
 function register(){
     let c = control.value;
     let p = pass.value;
@@ -12,14 +14,18 @@ function register(){
     });
     }
     
-    function login(){
-    let c = control.value;
-    let p = pass.value;
-    
-    if(c==="admin1" && p==="12345"){
-     window.location="admin.html";
-     return;
-    }
+    function login() {
+        const user = document.getElementById("usuario").value;
+        const pass = document.getElementById("password").value;
+     
+        if (user === ADMIN_USER && pass === ADMIN_PASS) {
+           localStorage.setItem("rol", "admin");
+           window.location.href = "dashboard.html";
+        } else {
+           localStorage.setItem("rol", "user");
+           window.location.href = "dashboard.html";
+        }
+     }
     
     db.collection("alumnos").doc(c).get().then(doc=>{
      if(!doc.exists){
@@ -31,7 +37,7 @@ function register(){
       window.location="dashboard.html";
      }
     });
-    }
+    
     
     function agregarFamiliar(){
     let html = `
@@ -96,7 +102,21 @@ function register(){
 function logout() {
     window.location.href = "index.html";
   }
+  window.onload = function() {
+    const rol = localStorage.getItem("rol");
+ 
+    if (rol === "admin") {
+       document.getElementById("adminPanel").style.display = "block";
+    }
+ }
   function verAlumnos() {
+    const rol = localStorage.getItem("rol");
+ 
+    if (rol !== "admin") {
+       alert("No tienes permiso");
+       return;
+    }
+ 
     const lista = document.getElementById("lista");
     lista.innerHTML = "";
  
@@ -105,13 +125,7 @@ function logout() {
           const data = doc.data();
  
           lista.innerHTML += `
-             <div style="border:1px solid #ccc; padding:10px; margin:10px;">
-                <p><b>Nombre:</b> ${data.nombre}</p>
-                <p><b>Edad:</b> ${data.edad}</p>
-                <p><b>CURP:</b> ${data.curp}</p>
-                <p><b>Grupo:</b> ${data.grupo}</p>
-                <p><b>Carrera:</b> ${data.carrera}</p>
-             </div>
+             <p>${data.nombre} - ${data.carrera}</p>
           `;
        });
     });
