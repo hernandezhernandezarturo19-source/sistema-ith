@@ -1,33 +1,37 @@
-import { db } from "firebase.js";
-import { collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js";
+import { getFirestore, collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const db = getFirestore();
 
 async function cargarAlumnos() {
+  const querySnapshot = await getDocs(collection(db, "alumnos"));
   const contenedor = document.getElementById("lista-alumnos");
+
   contenedor.innerHTML = "";
 
-  const datos = await getDocs(collection(db, "alumnos"));
-
-  datos.forEach(docSnap => {
-    const d = docSnap.data();
+  querySnapshot.forEach((docSnap) => {
+    const data = docSnap.data();
     const id = docSnap.id;
 
     contenedor.innerHTML += `
-      <div class="alumno">
+      <div class="card-alumno">
         <p><b>ID:</b> ${id}</p>
-        <p>${d.nombre}</p>
-        <p>${d.edad}</p>
-        <p>${d.curp}</p>
-        <p>${d.grupo}</p>
+        <p><b>Nombre:</b> ${data.nombre}</p>
+        <p><b>Edad:</b> ${data.edad}</p>
+        <p><b>CURP:</b> ${data.curp}</p>
+        <p><b>Grupo:</b> ${data.grupo}</p>
+
         <button onclick="eliminar('${id}')">Eliminar</button>
       </div>
     `;
   });
 }
 
-window.eliminar = async function(id) {
+cargarAlumnos();
+
+async function eliminar(id) {
   await deleteDoc(doc(db, "alumnos", id));
   cargarAlumnos();
-};
+}
 
 window.logout = function () {
   localStorage.clear();

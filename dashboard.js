@@ -18,5 +18,16 @@ async function cargarDatos() {
   }
   
 }
-
 cargarDatos();
+async function guardarDatos() {
+  const docRef = doc(db, "alumnos", userId);
+
+  await updateDoc(docRef, {
+    nombre: document.getElementById("nombre").value,
+    edad: document.getElementById("edad").value,
+    curp: document.getElementById("curp").value,
+    grupo: document.getElementById("grupo").value
+  });
+
+  alert("Datos actualizados correctamente");
+}
