@@ -92,3 +92,6 @@ document.querySelectorAll("#tabla div").forEach(d=>{
  d.style.display=d.innerText.toLowerCase().includes(t)?"block":"none";
 });
 }
+function logout() {
+    window.location.href = "index.html";
+  }
