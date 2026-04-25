@@ -88,7 +88,7 @@ function register(){
     
     function buscar(){
     let t=buscar.value.toLowerCase();
-    document.querySelectorAll("#tabla div").forEach(d=>{
+    document.querySelectorAll("#lista-alumno div").forEach(d=>{
      d.style.display=d.innerText.toLowerCase().includes(t)?"block":"none";
     });
     }
