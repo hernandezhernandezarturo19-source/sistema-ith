@@ -96,23 +96,20 @@ function register(){
 function logout() {
     window.location.href = "index.html";
   }
-  function verAlumnos() {
-    const lista = document.getElementById("lista");
-    lista.innerHTML = "";
- 
-    db.collection("alumnos").get().then((querySnapshot) => {
-       querySnapshot.forEach((doc) => {
-          const data = doc.data();
- 
-          lista.innerHTML += `
-             <div style="border:1px solid #ccc; padding:10px; margin:10px;">
-                <p><b>Nombre:</b> ${data.nombre}</p>
-                <p><b>Edad:</b> ${data.edad}</p>
-                <p><b>CURP:</b> ${data.curp}</p>
-                <p><b>Grupo:</b> ${data.grupo}</p>
-                <p><b>Carrera:</b> ${data.carrera}</p>
-             </div>
-          `;
-       });
-    });
- }
+  lista.innerHTML += `
+<table border="1">
+<tr>
+<th>Nombre</th><th>Edad</th><th>CURP</th><th>Grupo</th><th>Carrera</th>
+</tr>
+<tr>
+<td>${data.nombre}</td>
+<td>${data.edad}</td>
+<td>${data.curp}</td>
+<td>${data.grupo}</td>
+<td>${data.carrera}</td>
+<td>${data.nombre.agregarFamiliar}</td>
+<td>${data.parentesco}</td>
+<td>${data.telefono}</td>
+</tr>
+</table>
+`;
