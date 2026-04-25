@@ -1,4 +1,3 @@
-
 function register(){
     let c = control.value;
     let p = pass.value;
@@ -97,44 +96,3 @@ function register(){
 function logout() {
     window.location.href = "index.html";
   }
-  function verAlumnos() {
-    const lista = document.getElementById("lista");
-    lista.innerHTML = "";
- 
-    db.collection("alumnos").get().then((querySnapshot) => {
-       querySnapshot.forEach((doc) => {
-          const data = doc.data();
- 
-          lista.innerHTML += `
-             <div style="border:1px solid #ccc; padding:10px; margin:10px;">
-                <p><b>Nombre:</b> ${data.nombre}</p>
-                <p><b>Edad:</b> ${data.edad}</p>
-                <p><b>CURP:</b> ${data.curp}</p>
-                <p><b>Grupo:</b> ${data.grupo}</p>
-                <p><b>Carrera:</b> ${data.carrera}</p>
-             </div>
-          `;
-       });
-    });
- }
- function verAlumnos() {
-    const rol = localStorage.getItem("rol");
- 
-    if (rol !== "admin") {
-       alert("No tienes permiso");
-       return;
-    }
- 
-    const lista = document.getElementById("lista");
-    lista.innerHTML = "";
- 
-    db.collection("alumnos").get().then((querySnapshot) => {
-       querySnapshot.forEach((doc) => {
-          const data = doc.data();
- 
-          lista.innerHTML += `
-             <p>${data.nombre} - ${data.carrera}</p>
-          `;
-       });
-    });
- }
