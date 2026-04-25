@@ -2,39 +2,19 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Panel Alumno</title>
-<link rel="stylesheet" href="styles.css">
+<title>Alumno</title>
+<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-
 <div class="card">
-<h2>Datos Alumno</h2>
-
-<input id="nombre" placeholder="Nombre completo">
-<input id="edad" placeholder="Edad">
-<input id="curp" placeholder="CURP">
-<input id="grupo" placeholder="Grupo">
-
-<select id="carrera">
-<option>Sistemas computacionales</option>
-<option>Biología</option>
-<option>Agronomía</option>
-<option>Veterinaria</option>
-<option>Gestión empresarial</option>
-</select>
-
-<h3>Familiares</h3>
-<div id="familiares"></div>
-<button onclick="agregarFamiliar()">+ Agregar familiar</button>
-
-<br><br>
-<button onclick="save()">Guardar</button>
+  <h2>Datos Alumno</h2>
+  <button onclick="logout()">Cerrar sesión</button>
+  <input id="nombre" placeholder="Nombre">
+  <input id="edad" placeholder="Edad">
+  <input id="curp" placeholder="CURP">
+  <input id="grupo" placeholder="Grupo">
+  <button onclick="guardarDatos()">Guardar</button>
 </div>
-
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-<script src="firebase.js"></script>
-<script src="app.js"></script>
-
+<script type="module" src="js/dashboard.js"></script>
 </body>
 </html>
