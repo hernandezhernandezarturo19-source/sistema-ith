@@ -88,7 +88,7 @@ function register(){
     
     function buscar(){
     let t=buscar.value.toLowerCase();
-    document.querySelectorAll("#lista-alumnos div").forEach(d=>{
+    document.querySelectorAll("#tabla div").forEach(d=>{
      d.style.display=d.innerText.toLowerCase().includes(t)?"block":"none";
     });
     }
@@ -96,3 +96,23 @@ function register(){
 function logout() {
     window.location.href = "index.html";
   }
+  function verAlumnos() {
+    const lista = document.getElementById("lista");
+    lista.innerHTML = "";
+ 
+    db.collection("alumnos").get().then((querySnapshot) => {
+       querySnapshot.forEach((doc) => {
+          const data = doc.data();
+ 
+          lista.innerHTML += `
+             <div style="border:1px solid #ccc; padding:10px; margin:10px;">
+                <p><b>Nombre:</b> ${data.nombre}</p>
+                <p><b>Edad:</b> ${data.edad}</p>
+                <p><b>CURP:</b> ${data.curp}</p>
+                <p><b>Grupo:</b> ${data.grupo}</p>
+                <p><b>Carrera:</b> ${data.carrera}</p>
+             </div>
+          `;
+       });
+    });
+ }
