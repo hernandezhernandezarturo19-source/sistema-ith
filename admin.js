@@ -1,5 +1,5 @@
 import { db } from "firebase.js";
-import { collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js";
 
 async function cargarAlumnos() {
   const contenedor = document.getElementById("lista-alumnos");

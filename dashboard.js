@@ -1,5 +1,5 @@
 import { db } from "firebase.js";
-import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js";
 
 const userId = localStorage.getItem("userId");
 
