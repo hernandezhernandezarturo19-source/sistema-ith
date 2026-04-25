@@ -1,5 +1,3 @@
-import "./firebase.js";
-import { getFirestore, collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 const db = firebase.firestore();
 
 async function cargarAlumnos() {
