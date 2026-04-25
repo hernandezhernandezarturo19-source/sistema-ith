@@ -1,35 +1,22 @@
-import { db } from "./firebase.js";
-import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js";
+
+const db = getFirestore();
 
 const userId = localStorage.getItem("userId");
 
 async function cargarDatos() {
-  const ref = doc(db, "alumnos", userId);
-  const snap = await getDoc(ref);
+  const docRef = doc(db, "alumnos", userId);
+  const docSnap = await getDoc(docRef);
 
-  if (snap.exists()) {
-    const data = snap.data();
-    nombre.value = data.nombre || "";
-    edad.value = data.edad || "";
-    curp.value = data.curp || "";
-    grupo.value = data.grupo || "";
+  if (docSnap.exists()) {
+    const data = docSnap.data();
+
+    document.getElementById("nombre").value = data.nombre;
+    document.getElementById("edad").value = data.edad;
+    document.getElementById("curp").value = data.curp;
+    document.getElementById("grupo").value = data.grupo;
   }
+  
 }
-
-window.guardarDatos = async function () {
-  const ref = doc(db, "alumnos", userId);
-  await setDoc(ref, {
-    nombre: nombre.value,
-    edad: edad.value,
-    curp: curp.value,
-    grupo: grupo.value
-  });
-  alert("Guardado");
-};
-
-window.logout = function () {
-  localStorage.clear();
-  location.href = "index.html";
-};
 
 cargarDatos();
