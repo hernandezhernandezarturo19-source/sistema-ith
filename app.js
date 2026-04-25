@@ -16,7 +16,7 @@ function register(){
     let c = control.value;
     let p = pass.value;
     
-    if(c==="admin" && p==="12345"){
+    if(c==="admin1" && p==="12345"){
      window.location="admin.html";
      return;
     }
